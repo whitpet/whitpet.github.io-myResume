@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="Whitney Petter">
+    <meta name="Course" content="CIS-3623">
+    <title>Guess the Word</title>
+    <style>
+             #main-course {text-align: left;}
+        h1 {
+             background-color: cornflowerblue; text-align: center;
+        }
+        hr { 
+            width: 50%;
+        }
+        #keyboard {
+            margin: 0 auto;
+            font-size: xx-large;
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+        }
+        #board {
+            display: none;
+            text-align: center;
+        }
+        #showBoard {
+            width: 355px;
+            height: 365px;
+            background-color: rgb(255, 255, 255);
+            display: grid;
+            margin: 0 auto;
+            grid-template-columns: 75px 75px 75px 75px 75px; 
+            grid-template-rows: 75px 75px 75px 75px 75px 75px;
+
+        }
+        #boardTwo {
+            display: none;
+            text-align: center;
+        }
+        #showBoardTwo {
+            width: 205px;
+            height: 365px;
+            background-color: rgb(255, 255, 255);
+            display: grid;
+            margin: 0 auto;
+            grid-template-columns: 75px 75px 75px; 
+            grid-template-rows: 75px 75px 75px 75px 75px 75px;
+        }
+        #boardThree {
+            display: none;
+            text-align: center;
+        }
+        #showBoardThree {
+            width: 280px;
+            height: 365px;
+            background-color: rgb(255, 255, 255);
+            display: grid;
+            margin: 0 auto;
+            grid-template-columns: 75px 75px 75px 75px; 
+            grid-template-rows: 75px 75px 75px 75px 75px 75px;
+        }
+        #boardFour {
+            display: none;
+            text-align: center;
+        }
+        #showBoardFour {
+            width: 355px;
+            height: 365px;
+            background-color: rgb(255, 255, 255);
+            display: grid;
+            margin: 0 auto;
+            grid-template-columns: 75px 75px 75px 75px 75px; 
+            grid-template-rows: 75px 75px 75px 75px 75px 75px;
+        }
+        .tile {
+            border: 2px solid;
+            width: 50px;
+            height: 60px;
+            margin: 0.5px;
+
+            color: black;
+            font-size: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .correct-position {
+            background-color: darkseagreen;
+            color: white;
+            border-color: white;
+        }
+        .correct-letter {
+            background-color: yellow;
+            color: white;
+            border-color: white;
+        }
+        .before {
+            background-color: black;
+            color: white;
+            border-color: white;
+        }
+        .box {
+        background-color:transparent;
+        border: 2px solid black;
+        }
+        .hidden {display: none;}
+        #main-course {text-align: left;}
+        #feedback {display: none;}
+
+    </style>
+    <script>
+
+        var easyAnswer = "PIG"
+        var letter1 = null
+        var letter2 = null
+        var letter3 = null
+        var letter4 = null
+        var letter5 = null
+        var letter6 = null
+        var letter7 = null
+        var letter8 = null
+        var letter9 = null
+        var letter10 = null
+        var letter11 = null
+        var letter12 = null
+        var letter13 = null
+        var letter14 = null
+        var letter15 = null
+
+        var mediumAnswer = "FISH"
+        var letter1_1 = null
+        var letter2_1 = null
+        var letter3_1 = null
+        var letter4_1 = null
+        var letter5_1 = null
+        var letter6_1 = null
+        var letter7_1 = null 
+        var letter8_1 = null
+        var letter9_1 = null
+        var letter10_1 = null
+        var letter11_1 = null
+        var letter12_1 = null
+        var letter13_1 = null
+        var letter14_1 = null
+        var letter15_1 = null
+        var letter16_1 = null
+        var letter17_1 = null  
+        var letter18_1 = null
+        var letter19_1 = null
+        var letter20_1 = null
+
+        var hardAnswer = "HORSE"
+        var letter1_2 = null
+        var letter2_2 = null
+        var letter3_2 = null
+        var letter4_2 = null
+        var letter5_2 = null
+        var letter6_2 = null
+        var letter7_2 = null 
+        var letter8_2 = null
+        var letter9_2 = null
+        var letter10_2 = null
+        var letter11_2 = null
+        var letter12_2 = null
+        var letter13_2 = null
+        var letter14_2 = null
+        var letter15_2 = null
+        var letter16_2 = null
+        var letter17_2 = null  
+        var letter18_2 = null
+        var letter19_2 = null
+        var letter20_2 = null
+        var letter21_2 = null
+        var letter22_2 = null
+        var letter23_2 = null
+        var letter24_2 = null
+        var letter25_2 = null
+
+        function showHint() {
+            if (confirm("What animal ran from the Big Bad Wolf?")) {
+
+            }
+        }
+
+        function colorLetter(theLetter, index, theLetterBox) {
+            
+            console.log("Easy answer = " + easyAnswer)
+                console.log("First letter equals" + easyAnswer.charAt(0))
+                if (theLetter == easyAnswer.charAt(index)) {
+                    console.log("Correct postion and letter")
+                    theLetterBox.style.backgroundColor = "green"
+                } else if (easyAnswer.includes(theLetter)) {
+                    console.log("Correct letter, wrong spot")
+                    theLetterBox.style.backgroundColor = "yellow"
+                } else {
+                    console.log("Wrong guess")
+                    theLetterBox.style.backgroundColor = "grey"
+                } 
+        }
+
+
+        function checkLetter(theLetterBox, key, index) {
+            theLetter = key.value
+            theLetterBox.innerHTML = theLetter
+                return theLetter }
+
+                function enterKey(key) {
+            console.log("The word is..." + key.value)
+            var letter1Box = document.getElementById("board1-letter1")
+            var letter2Box = document.getElementById("board1-letter2")
+            var letter3Box = document.getElementById("board1-letter3")
+            var letter4Box = document.getElementById("board1-letter4")
+            var letter5Box = document.getElementById("board1-letter5")
+            var letter6Box = document.getElementById("board1-letter6")
+            var letter7Box = document.getElementById("board1-letter7")
+            var letter8Box = document.getElementById("board1-letter8")
+            var letter9Box = document.getElementById("board1-letter9")
+            var letter10Box = document.getElementById("board1-letter10")
+            var letter11Box = document.getElementById("board1-letter11")
+            var letter12Box = document.getElementById("board1-letter12")
+            var letter13Box = document.getElementById("board1-letter13")
+            var letter14Box = document.getElementById("board1-letter14")
+            var letter15Box = document.getElementById("board1-letter15")
+
+            if (letter1 != null && letter2 != null && letter3 != null) {
+                colorLetter(letter1, 0, letter1Box)
+                colorLetter(letter2, 1, letter2Box)
+                colorLetter(letter3, 2, letter3Box)
+            } 
+            if (
+                letter4 != null && letter5 != null && letter6 != null){
+                    colorLetter(letter4, 0, letter4Box)
+                    colorLetter(letter5, 1, letter5Box)
+                    colorLetter(letter6, 2, letter6Box)
+                }
+            if (
+                letter7 != null && letter8 != null && letter9 != null) {
+                    colorLetter(letter7, 0, letter7Box)
+                    colorLetter(letter8, 1, letter8Box)
+                    colorLetter(letter9, 2, letter9Box)
+                }
+            if (
+                letter10 != null && letter11 != null && letter12 != null)
+                {
+                    colorLetter(letter10, 0, letter10Box)
+                    colorLetter(letter11, 1, letter11Box)
+                    colorLetter(letter12, 2, letter12Box)
+                }
+            if (
+                letter13 !=null && letter14 != null && letter15 !=null)
+                {
+                    colorLetter(letter13, 0, letter13Box)
+                    colorLetter(letter14, 1, letter14Box)
+                    colorLetter(letter15, 2, letter15Box)
+                }
+            
+            
+
+        }
+
+        function restart() {
+        window.location = ""; 
+}
+
+       // function deleteKey(key) {
+       //     console.log("Delete this..." + key.value)
+       //     var deleteElement = document.getElementById("board1-letter1")
+       //     deleteElement.parentNode.removeChild(deleteElement)
+
+
+    
+
+        function clickKey(key) {
+            console.log("Log this..." + key.value)
+            var letter1Box = document.getElementById("board1-letter1")
+            var letter2Box = document.getElementById("board1-letter2")
+            var letter3Box = document.getElementById("board1-letter3")
+            var letter4Box = document.getElementById("board1-letter4")
+            var letter5Box = document.getElementById("board1-letter5")
+            var letter6Box = document.getElementById("board1-letter6")
+            var letter7Box = document.getElementById("board1-letter7")
+            var letter8Box = document.getElementById("board1-letter8")
+            var letter9Box = document.getElementById("board1-letter9")
+            var letter10Box = document.getElementById("board1-letter10")
+            var letter11Box = document.getElementById("board1-letter11")
+            var letter12Box = document.getElementById("board1-letter12")
+            var letter13Box = document.getElementById("board1-letter13")
+            var letter14Box = document.getElementById("board1-letter14")
+            var letter15Box = document.getElementById("board1-letter15")
+            var theLetter1 = document.getElementById("keyboard-button").value
+
+           if (letter1 == null) {
+                letter1 = checkLetter(letter1Box, key, 0)
+     /*           letter1 = key.value
+                letter1Box.innerHTML = letter1
+                console.log("Easy answer = " + easyAnswer)
+                console.log("First letter equals" + easyAnswer.charAt(0))
+                if (letter1 == easyAnswer.charAt(0)) {
+                    console.log("Correct postion and letter")
+                    letter1Box.style.backgroundColor = "green"
+                } else if (easyAnswer.includes(letter1)) {
+                    console.log("Correct letter, wrong spot")
+                    letter1Box.style.backgroundColor = "yellow"
+                } else {
+                    console.log("Wrong guess")
+                    letter1Box.style.backgroundColor = "grey"
+             } */
+              } else if (letter2 == null) {
+                letter2 = checkLetter(letter2Box, key, 1)
+                } else if (letter3 == null) {
+                    letter3 = checkLetter(letter3Box, key, 2)
+                } else if (letter4 == null) {
+                    letter4 = checkLetter(letter4Box, key, 0)
+                } else if (letter5 == null) {
+                    letter5 = checkLetter(letter5Box, key, 1)
+                } else if (letter6 == null) {
+                    letter6 = checkLetter(letter6Box, key, 2)
+                } else if (letter7 == null) {
+                    letter7 = checkLetter(letter7Box, key, 0)
+                }else if (letter8 == null) {
+                    letter8 = checkLetter(letter8Box, key, 1)
+                }else if (letter9 == null) {
+                    letter9 = checkLetter(letter9Box, key, 2)
+                }else if (letter10 == null) {
+                    letter10 = checkLetter(letter10Box, key, 0)
+                }else if (letter11 == null) {
+                    letter11 = checkLetter(letter11Box, key, 1)
+                }else if (letter12 == null) {
+                    letter12 = checkLetter(letter12Box, key, 2)
+                }else if (letter13 == null) {
+                    letter13 = checkLetter(letter13Box, key, 0)
+                }else if (letter14 == null) {
+                    letter14 = checkLetter(letter14Box, key, 1)
+                }else if (letter15 == null) {
+                    letter15 = checkLetter(letter15Box, key, 2)
+                }
+
+
+                var letter1Box2 = document.getElementById("board2-letter1")
+                var letter2Box2 = document.getElementById("board2-letter2")
+                var letter3Box2 = document.getElementById("board2-letter3")
+                var letter4Box2 = document.getElementById("board2-letter4")
+                var letter5Box2 = document.getElementById("board2-letter5")
+                var letter6Box2 = document.getElementById("board2-letter6")
+                var letter7Box2 = document.getElementById("board2-letter7")
+                var letter8Box2 = document.getElementById("board2-letter8")
+                var letter9Box2 = document.getElementById("board2-letter9")
+                var letter10Box2 = document.getElementById("board2-letter10")
+                var letter11Box2 = document.getElementById("board2-letter11")
+                var letter12Box2 = document.getElementById("board2-letter12")
+                var letter13Box2 = document.getElementById("board2-letter13")
+                var letter14Box2 = document.getElementById("board2-letter14")
+                var letter15Box2 = document.getElementById("board2-letter15")
+                var letter16Box2 = document.getElementById("board2-letter16")
+                var letter17Box2 = document.getElementById("board2-letter17")
+                var letter18Box2 = document.getElementById("board2-letter18")
+                var letter19Box2 = document.getElementById("board2-letter19")
+                var letter20Box2 = document.getElementById("board2-letter20")
+
+
+
+      /*      if (letter1_1 == null) {
+                letter1_1 = key.value
+                letter1Box2.innerHTML = letter1_1
+                if (letter1_1 == mediumAnswer.charAt(0)) {
+                    console.log("Correct postion and letter")
+                } else if (mediumAnswer.includes(letter1)) {
+                    console.log("Correct letter, wrong spot")
+                } else {
+                    console.log("Wrong guess")
+                } 
+            } else if (letter2_1 == null) {
+                letter2_1 = key.value
+                letter2Box2.innerHTML = letter2_1  
+            } else if (letter3_1 == null) {
+                letter3_1 = key.value
+                letter3Box2.innerHTML = letter3_1
+            } else if (letter4_1 == null) {
+                letter4_1 = key.value
+                letter4Box2.innerHTML = letter4_1
+            } else if (letter5_1 == null) {
+                letter5_1 = key.value
+                letter5Box2.innerHTML = letter5_1
+        } else if (letter6_1 == null) {
+                letter6_1 = key.value
+                letter6Box2.innerHTML = letter6_1
+        } else if (letter7_1 == null) {
+                letter7_1 = key.value
+                letter7Box2.innerHTML = letter7_1
+        } else if (letter8_1 == null) {
+                letter8_1 = key.value
+                letter8Box2.innerHTML = letter8_1
+        } else if (letter9_1 == null) {
+                letter9_1 = key.value
+                letter9Box2.innerHTML = letter9_1
+        } else if (letter10_1 == null) {
+                letter10_1 = key.value
+                letter10Box2.innerHTML = letter10_1
+        } else if (letter11_1 == null) {
+                letter11_1 = key.value
+                letter11Box2.innerHTML = letter11_1
+        } else if (letter12_1 == null) {
+                letter12_1 = key.value
+                letter12Box2.innerHTML = letter12_1
+        } else if (letter13_1 == null) {
+                letter13_1 = key.value
+                letter13Box2.innerHTML = letter13_1
+        } else if (letter14_1 == null) {
+                letter14_1 = key.value
+                letter14Box2.innerHTML = letter14_1
+        } else if (letter15_1 == null) {
+                letter15_1 = key.value
+                letter15Box2.innerHTML = letter15_1
+        } else if (letter16_1 == null) {
+                letter16_1 = key.value
+                letter16Box2.innerHTML = letter16_1
+        } else if (letter17_1 == null) {
+                letter17_1 = key.value
+                letter17Box2.innerHTML = letter17_1
+        } else if (letter18_1 == null) {
+                letter18_1 = key.value
+                letter18Box2.innerHTML = letter18_1
+        } else if (letter19_1 == null) {
+                letter19_1 = key.value
+                letter19Box2.innerHTML = letter19_1
+        } else if (letter20_1 == null) {
+                letter20_1 = key.value
+                letter20Box2.innerHTML = letter20_1
+        }
+                var letter1Box3 = document.getElementById("board3-letter1")
+                var letter2Box3 = document.getElementById("board3-letter2")
+                var letter3Box3 = document.getElementById("board3-letter3")
+                var letter4Box3 = document.getElementById("board3-letter4")
+                var letter5Box3 = document.getElementById("board3-letter5")
+                var letter6Box3 = document.getElementById("board3-letter6")
+                var letter7Box3 = document.getElementById("board3-letter7")
+                var letter8Box3 = document.getElementById("board3-letter8")
+                var letter9Box3 = document.getElementById("board3-letter9")
+                var letter10Box3 = document.getElementById("board3-letter10")
+                var letter11Box3 = document.getElementById("board3-letter11")
+                var letter12Box3 = document.getElementById("board3-letter12")
+                var letter13Box3 = document.getElementById("board3-letter13")
+                var letter14Box3 = document.getElementById("board3-letter14")
+                var letter15Box3 = document.getElementById("board3-letter15")
+                var letter16Box3 = document.getElementById("board3-letter16")
+                var letter17Box3 = document.getElementById("board3-letter17")
+                var letter18Box3 = document.getElementById("board3-letter18")
+                var letter19Box3 = document.getElementById("board3-letter19")
+                var letter20Box3 = document.getElementById("board3-letter20") 
+                var letter21Box3 = document.getElementById("board3-letter21")
+                var letter22Box3 = document.getElementById("board3-letter22")
+                var letter23Box3 = document.getElementById("board3-letter23")
+                var letter24Box3 = document.getElementById("board3-letter24")
+                var letter25Box3 = document.getElementById("board3-letter25")
+
+                if (letter1_2 == null) {
+                letter1_2 = key.value
+                letter1Box3.innerHTML = letter1_2
+                if (letter1_2 == hardAnswer.charAt(0)) {
+                    console.log("Correct postion and letter")
+                } else if (hardAnswer.includes(letter1)) {
+                    console.log("Correct letter, wrong spot")
+                } else {
+                    console.log("Wrong guess")
+                }
+             } else if (letter2_2 == null) {
+                letter2_2 = key.value
+                letter2Box3.innerHTML = letter2_2
+            }   else if (letter3_2 == null) {
+                letter3_2 = key.value
+                letter3Box3.innerHTML = letter3_2
+            }  else if (letter4_2 == null) {
+                letter4_2 = key.value
+                letter4Box3.innerHTML = letter4_2
+            }  else if (letter5_2 == null) {
+                letter5_2 = key.value
+                letter5Box3.innerHTML = letter5_2
+            }  else if (letter6_2 == null) {
+                letter6_2 = key.value
+                letter6Box3.innerHTML = letter6_2
+            }  else if (letter7_2 == null) {
+                letter7_2 = key.value
+                letter7Box3.innerHTML = letter7_2
+            }  else if (letter8_2 == null) {
+                letter8_2 = key.value
+                letter8Box3.innerHTML = letter8_2
+            }  else if (letter9_2 == null) {
+                letter9_2 = key.value
+                letter9Box3.innerHTML = letter9_2
+            }  else if (letter10_2 == null) {
+                letter10_2 = key.value
+                letter10Box3.innerHTML = letter10_2
+            }  else if (letter11_2 == null) {
+                letter11_2 = key.value
+                letter11Box3.innerHTML = letter11_2
+            }  else if (letter12_2 == null) {
+                letter12_2 = key.value
+                letter12Box3.innerHTML = letter12_2
+            }  else if (letter13_2 == null) {
+                letter13_2 = key.value
+                letter13Box3.innerHTML = letter13_2
+            }  else if (letter14_2 == null) {
+                letter14_2 = key.value
+                letter14Box3.innerHTML = letter14_2
+            }  else if (letter15_2 == null) {
+                letter15_2 = key.value
+                letter15Box3.innerHTML = letter15_2
+            }  else if (letter16_2 == null) {
+                letter16_2 = key.value
+                letter16Box3.innerHTML = letter16_2
+            }  else if (letter17_2 == null) {
+                letter17_2 = key.value
+                letter17Box3.innerHTML = letter17_2
+            }  else if (letter18_2 == null) {
+                letter18_2 = key.value
+                letter18Box3.innerHTML = letter18_2
+            }  else if (letter19_2 == null) {
+                letter19_2 = key.value
+                letter19Box3.innerHTML = letter19_2
+            }  else if (letter20_2 == null) {
+                letter20_2 = key.value
+                letter20Box3.innerHTML = letter20_2
+            }  else if (letter21_2 == null) {
+                letter21_2 = key.value
+                letter21Box3.innerHTML = letter21_2
+            }  else if (letter22_2 == null) {
+                letter22_2 = key.value
+                letter22Box3.innerHTML = letter22_2
+            }  else if (letter23_2 == null) {
+                letter23_2 = key.value
+                letter23Box3.innerHTML = letter23_2
+            }  else if (letter24_2 == null) {
+                letter24_2 = key.value
+                letter24Box3.innerHTML = letter24_2
+            }  else if (letter25_2 == null) {
+                letter25_2 = key.value
+                letter25Box3.innerHTML = letter25_2
+            }  */
+    }  
+
+
+        
+
+        function beginBoard() {
+            console.log("Start playing...")
+            var showTheGame = document.getElementById("board");
+            showTheGame.style.display = "table"
+
+            var colors = document.getElementsByName("color")
+            console.log(colors)
+
+            var selectedColor = ""
+                if (colors[i].checked) {
+                    selectedColor = colors[i].color
+                }
+            }
+
+        function changeEasy() {
+            console.log("Word has 3 letters")
+        }
+        function changeMedium() {
+            console.log("Word has 4 letters")
+        }
+        function changeHard() {
+            console.log("Word has 5 letters")
+        }
+ 
+        function changeLevel() {
+            console.log("Changing level...")
+
+
+            var selectSelectLevel = document.getElementsByName("difficulty")
+            console.log(selectSelectLevel)
+
+            var easyGame = document.getElementById("boardTwo");
+            var mediumGame = document.getElementById("boardThree");
+            var hardGame = document.getElementById("boardFour");
+
+            var chosenLevel = ""
+            for (let i = 0; i < selectSelectLevel.length; i = i + 1) {
+                if (selectSelectLevel[i].checked) {
+                    chosenLevel = selectSelectLevel[i].value
+                }
+            }
+
+            var easyGame = document.getElementById("boardTwo");
+            if (chosenLevel === "Easy"){
+                    easyGame.style.display = "table"
+                    mediumGame.style.display = "none" 
+                    hardGame.style.display = "none" 
+            } else if(chosenLevel === "Medium"){  
+                mediumGame.style.display = "table"
+                easyGame.style.display = "none"
+                hardGame.style.display = "none"
+            } else if (chosenLevel === "Hard") {
+                hardGame.style.display = "table"
+            easyGame.style.display = "none"
+            mediumGame.style.display = "none"
+            }
+
+            placehold.innerHTML = chosenLevel
+
+        }
+    </script>
+</head>
+<body>
+    <a href="file:///Users/whitneypetter/Documents/CIS-3623/whitpet.github.io-myResume/Final%20Project/Whitney%20Petter%20Resume.html">Go to Home Page</a>
+    <h1>Guess the Word</h1>
+    <hr>
+    <br>
+    <form>
+    <fieldset id="levels">
+        <legend>Select to Play</legend>
+    <input type="radio" name="difficulty" value="Easy" onclick="changeEasy()">&nbsp; Game Board &nbsp;&nbsp;
+<!--   <input type="radio" name="difficulty" value="Medium" disabled onclick="changeMedium()">&nbsp; Medium &nbsp;&nbsp;
+    <input type="radio" name="difficulty" value="Hard" disabled onclick="changeHard()">&nbsp; Hard &nbsp;&nbsp; -->   
+    </fieldset>
+    </form><br>
+    <br>
+    <input type="button" value="Change Difficulty" onclick="changeLevel()"
+    <input type="button" value="start game" onclick="beginBoard()">
+    <input type="button" id="game-hint" value="Hint" onclick="showHint()">
+<p id="gameOne"></p>
+<div id="placehold"></div>
+    <div class="hidden"></div>
+    <div id="boardTwo">
+        <div id="showBoardTwo">
+            <div class="tile" id="board1-letter1"></div>
+            <div class="tile" id="board1-letter2"></div>
+            <div class="tile" id="board1-letter3"></div>
+            <div class="tile" id="board1-letter4"></div>
+            <div class="tile" id="board1-letter5"></div>
+            <div class="tile" id="board1-letter6"></div>
+            <div class="tile" id="board1-letter7"></div>
+            <div class="tile" id="board1-letter8"></div>
+            <div class="tile" id="board1-letter9"></div>
+            <div class="tile" id="board1-letter10"></div>
+            <div class="tile" id="board1-letter11"></div>
+            <div class="tile" id="board1-letter12"></div>
+            <div class="tile" id="board1-letter13"></div>
+            <div class="tile" id="board1-letter14"></div>
+            <div class="tile" id="board1-letter15"></div>
+        </div>
+    </div>
+    <div id="boardThree">
+        <div id="showBoardThree">
+            <div class="tile" id="board2-letter1"></div>
+            <div class="tile" id="board2-letter2"></div>
+            <div class="tile" id="board2-letter3"></div>
+            <div class="tile" id="board2-letter4"></div>
+            <div class="tile" id="board2-letter5"></div>
+            <div class="tile" id="board2-letter6"></div>
+            <div class="tile" id="board2-letter7"></div>
+            <div class="tile" id="board2-letter8"></div>
+            <div class="tile" id="board2-letter9"></div>
+            <div class="tile" id="board2-letter10"></div>
+            <div class="tile" id="board2-letter11"></div>
+            <div class="tile" id="board2-letter12"></div>
+            <div class="tile" id="board2-letter13"></div>
+            <div class="tile" id="board2-letter14"></div>
+            <div class="tile" id="board2-letter15"></div>
+            <div class="tile" id="board2-letter16"></div>
+            <div class="tile" id="board2-letter17"></div>
+            <div class="tile" id="board2-letter18"></div>
+            <div class="tile" id="board2-letter19"></div>
+            <div class="tile" id="board2-letter20"></div>
+        </div>
+    </div>
+    <div class="hidden"></div>
+    <div id="boardFour">
+        <div id="showBoardFour">
+        <div class="tile" id="board3-letter1"></div>
+        <div class="tile" id="board3-letter2" ></div>
+        <div class="tile" id="board3-letter3"></div>
+        <div class="tile" id="board3-letter4"></div>
+        <div class="tile" id="board3-letter5"></div>
+        <div class="tile" id="board3-letter6"></div>
+        <div class="tile" id="board3-letter7"></div>
+        <div class="tile" id="board3-letter8"></div>
+        <div class="tile" id="board3-letter9"></div>
+        <div class="tile" id="board3-letter10"></div>
+        <div class="tile" id="board3-letter11"></div>
+        <div class="tile" id="board3-letter12"></div>
+        <div class="tile" id="board3-letter13"></div>
+        <div class="tile" id="board3-letter14"></div>
+        <div class="tile" id="board3-letter15"></div>
+        <div class="tile" id="board3-letter16"></div>
+        <div class="tile" id="board3-letter17"></div>
+        <div class="tile" id="board3-letter18"></div>
+        <div class="tile" id="board3-letter19"></div>
+        <div class="tile" id="board3-letter20"></div>
+        <div class="tile" id="board3-letter21"></div>
+        <div class="tile" id="board3-letter22"></div>
+        <div class="tile" id="board3-letter23"></div>
+        <div class="tile" id="board3-letter24"></div>
+        <div class="tile" id="board3-letter25"></div>
+    </div>
+    </div>
+    <div id="keyboard">
+        <div class="row-one">
+            <input type="button"  id="keyboard-button" value="Q" onclick="clickKey(this)">
+            <input type="button"  id="keyboard-button" value="W" onclick="clickKey(this)">
+            <input type="button"  id="keyboard-button" value="E" onclick="clickKey(this)">
+            <input type="button" id="keyboard-button"  value="R" onclick="clickKey(this)">
+            <input type="button" id="keyboard-button"  value="T" onclick="clickKey(this)">
+            <input type="button" id="keyboard-button" value="Y" onclick="clickKey(this)">
+            <input type="button" id="keyboard-button" value="U" onclick="clickKey(this)">
+            <input type="button" id="keyboard-button" value="I" onclick="clickKey(this)">
+            <input type="button" id="keyboard-button" value="O" onclick="clickKey(this)">
+            <input type="button" id="keyboard-button" value="P" onclick="clickKey(this)">
+    </div>
+    <div class="row-two">
+    &nbsp;   <input type="button" id="keyboard-button" value="A" onclick="clickKey(this)">
+        <input type="button" id="keyboard-button" value="S" onclick="clickKey(this)">
+        <input type="button" id="keyboard-button" value="D" onclick="clickKey(this)">
+        <input type="button" id="keyboard-button" value="F" onclick="clickKey(this)">
+        <input type="button" id="keyboard-button" value="G" onclick="clickKey(this)">
+        <input type="button" id="keyboard-button" value="H" onclick="clickKey(this)">
+        <input type="button" id="keyboard-button" value="J" onclick="clickKey(this)">
+        <input type="button" id="keyboard-button" value="K" onclick="clickKey(this)">
+        <input type="button" id="keyboard-button" value="L" onclick="clickKey(this)">
+    </div>
+    <div class="row-three">
+        <input type="button" id="keyboard-button" value="RESTART" onclick="restart()">
+        <input type="button" id="keyboard-button" value="Z" onclick="clickKey(this)">
+        <input type="button" id="keyboard-button" value="X" onclick="clickKey(this)">
+        <input type="button" id="keyboard-button" value="C" onclick="clickKey(this)">
+        <input type="button" id="keyboard-button" value="V" onclick="clickKey(this)">
+        <input type="button" id="keyboard-button" value="B" onclick="clickKey(this)">
+        <input type="button" id="keyboard-button" value="N" onclick="clickKey(this)">
+        <input type="button" id="keyboard-button" value="M" onclick="clickKey(this)">
+        <input type="button" id="keyboard-button" value="ENTER" onclick="enterKey(this)">
+    </div>
+</body>
+</html>
